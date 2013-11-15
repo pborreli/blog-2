@@ -10,9 +10,9 @@ tags: [stage1, docker, symfony, php]
     <head>
         <meta charset="utf-8">
         <title>Stage1</title>
-        <link rel="stylesheet" href="{{ site.url }}/assets/css/vendor/bootstrap.css" />
-        <link rel="stylesheet" href="{{ site.url }}/assets/css/public.css" />
-        <link rel="stylesheet" href="{{ site.url }}/assets/css/blog.css" />
+        <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/vendor/bootstrap.css" />
+        <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/public.css" />
+        <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/blog.css" />
     </head>
 
     <body>
@@ -32,7 +32,7 @@ tags: [stage1, docker, symfony, php]
             <ul class="post nav nav-pills nav-stacked">
             {% for post in site.posts %}
                 <li>
-                    <a href="{{ site.url }}{{ post.url }}">
+                    <a href="{{ site.baseurl }}{{ site.url }}{{ post.url }}">
                         <h3>{{ post.title }}</h3>
                     </a>
                 </li>
