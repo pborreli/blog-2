@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Stage1</title>
+        <link rel="stylesheet" href="/assets/css/vendor/bootstrap.css" />
+        <link rel="stylesheet" href="/assets/css/public.css" />
+        <link rel="stylesheet" href="/assets/css/blog.css" />
+    </head>
+
+    <body>
+        <div class="container-narrow">
+
+            <div class="masthead">
+                <ul class="nav nav-pills pull-right">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="/login/github">Signin</a></li>
+                    <li><a href="/demo">Demo</a><li>
+                </ul>
+                <h3 class="muted"><a href="/">The Stage1 Blog</a></h3>
+            </div>
+
+            <hr />
+
+            <h3>{{ page.title }}</h3>
+
+            <hr />
+
+            {{ content }}
+
+            <hr />
+
+            <div class="footer">
+                <ul class="breadcrumb">
+                    <li>&copy; Stage1 2013 <span class="divider">/</separator></li>
+                    <li><a href="/privacy">Privacy</a> <span class="divider">/</separator></li>
+                    <li><a href="/terms">Terms</a></li>
+                </ul>
+            </div>
+
+        </div> <!-- /container -->
+    </body>
+</html>
