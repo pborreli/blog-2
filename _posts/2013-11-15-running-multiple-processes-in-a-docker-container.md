@@ -2,7 +2,7 @@
 layout: post
 title: Running multiple processes in a docker container
 category: articles
-tags: [docker]
+tags: [docker, processes]
 comments: true
 ---
 

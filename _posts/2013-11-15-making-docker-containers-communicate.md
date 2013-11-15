@@ -2,7 +2,7 @@
 layout: post
 title: Making docker containers communicate
 category: articles
-tags: [docker]
+tags: [docker, networking]
 comments: true
 ---
 

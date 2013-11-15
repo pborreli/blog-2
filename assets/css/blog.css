@@ -1,3 +1,11 @@
 .post-meta {
-    text-align: right;
+    text-align: center;
+}
+
+.post-title {
+    text-align: center;
+}
+
+.post-content p {
+    margin-bottom: 1.5em;
 }

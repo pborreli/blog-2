@@ -17,16 +17,18 @@
                     <li><a href="/login/github">Signin</a></li>
                     <li><a href="/demo">Demo</a><li>
                 </ul>
-                <h3 class="muted"><a href="{{ site.baseurl }}">Stage1 — The Blog</a></h3>
+                <h3 class="muted"><a href="{{ site.baseurl }}/">Stage1 — The Blog</a></h3>
             </div>
 
             <hr />
 
-            <h3>{{ page.title }}</h3>
+            <h3 class="post-title">{{ page.title }}</h3>
 
             <hr />
 
-            {{ content }}
+            <div class="post-content">
+                {{ content }}
+            </div>
 
             <hr />
 
