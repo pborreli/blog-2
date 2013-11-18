@@ -9,4 +9,17 @@
 
 .post-content p {
     margin-bottom: 1.5em;
+    font-family: serif;
+    font-size: 12pt;
+}
+
+.post-content pre, .post-content code {
+    border: 0;
+}
+
+.post-content pre {
+    max-height: 12em;
+    overflow: scroll;
+    margin-bottom: 1.5em;
+    font-size: 12pt;
 }

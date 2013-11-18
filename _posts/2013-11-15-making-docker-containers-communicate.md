@@ -6,51 +6,41 @@ tags: [docker, networking]
 comments: true
 ---
 
-Starting with docker 0.6.5 you don't need pipework for that kind of scenario, you can use the new container linking feature. Basically, you tell docker to make a port from a container available to another container.
+[Docker 0.6.5](http://blog.docker.io/2013/10/docker-0-6-5-links-container-naming-advanced-port-redirects-host-integration/) introduced a very interesting feature: container linking. Basically, you can tell docker to make a port from a container available to another container. And it's pretty easy to use, too. To demonstrate how container linking works, we will setup a quick php5-fpm + nginx configuration using one container for php-fpm and another for nginx.
 
-It's pretty easy to do, too.
+This article assumes that you know how to build a container and that you already both a `php5-fpm` and `nginx` container. You can read more about building containers at [the official docker documentation](https://docs.docker.io/en/latest/use/builder/).
 
-What you want to do is have a container with php5-fpm (let's call this container `php5-fpm`) configured to listen on port 9000 and run it like so:
+What you want to do is have the container with php5-fpm configured to listen on port 9000 and run it like so:
 
-    docker run -d -p 9000 -name php php5-fpm /usr/sbin/php5-fpm -F
+    docker run -d -p 9000 -name php55 php5-fpm /usr/sbin/php5-fpm -F
 
-We run `php5-fpm` with the `-F` flag so that it does not daemonize. As you can see, we use `-name` to explicitely name our container. We will use this name to reference it in the link we are going to create with the nginx container.
+We run `php5-fpm` with the `-F` flag so that it does not daemonize. As you can see, we use `-name` to explicitely name our container instead of having to remember its commit id. I named it `php55`, that's for PHP 5.5, since you don't run an unsupported version of PHP do you?
 
-Then you can run your nginx (called `nginx`) container:
+We can now use this name to reference the php container in the link we are going to create with the nginx container:
 
-    docker run -i -t -link php:php nginx /bin/bash
+    docker run -i -t -link php55:php nginx /bin/bash
 
-The `-link` option tells docker to link the `php` container under the alias `php`. The alias is mandatory.
+The `-link` option tells docker to link the `php55` container under the alias `php`. The alias is mandatory and must not be empty (no cheating with `php55:` for example).
 
-We now have a shell in our nginx container, and we can retrieve the mapped ip and port of the `php5-fpm` container using the `env` command:
+We now have a shell in our `nginx` container, and we can retrieve the mapped ip and port of the `php5-fpm` container using the `env` command:
 
-    root@061fe34bd07b:/# env
-    HOSTNAME=061fe34bd07b
-    TERM=xterm
+    root@061fe34bd07b:/# env | grep -E ^PHP
     PHP_PORT=tcp://172.17.0.44:9000
     PHP_PORT_9000_TCP_PROTO=tcp
-    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-    PWD=/etc/nginx/sites-enabled
     PHP_PORT_9000_TCP_PORT=9000
-    SHLVL=1
-    HOME=/
     PHP_PORT_9000_TCP=tcp://172.17.0.44:9000
-    PHP_NAME=/crimson_squirrel9/php
-    DEBIAN_FRONTEND=noninteractive
+    PHP_NAME=/crimson_squirrel9/php55
     PHP_PORT_9000_TCP_ADDR=172.17.0.44
-    container=lxc
-    OLDPWD=/
-    _=/usr/bin/env
 
-There are a number of interesting env vars here. The one we are looking for is `PHP_PORT`, since it gives the most complete information about the linked container:
+There are a number of interesting environment vars docker exported for us. The one we are looking for is `PHP_PORT`, since it gives the most complete information about the linked container:
 
     PHP_PORT=tcp://172.17.0.44:9000
 
-You can now configure nginx's php5-fpm upstream to 172.17.0.44:9000, start it, and check that it works:
+You can now configure nginx's php5-fpm upstream to `172.17.0.44:9000`, start it, and check that it works:
 
     /etc/init.d/nginx start
     curl http://127.0.0.1/index.php
 
-Voila ! I skipped provisioning and configuration of containers since you seem to have got that right already ;)
+Remember, your PHP source code has to be available on your php5-fpm container (maybe you uploaded it earlier, or ar using volumes to make it available to multiple containers).
 
-Link to the official linking tutorials, using redis: http://docs.docker.io/en/latest/examples/linking_into_redis/
+See also [the official linking tutorial, using redis](http://docs.docker.io/en/latest/examples/linking_into_redis/).
