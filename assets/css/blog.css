@@ -9,8 +9,15 @@
 
 .post-content p {
     margin-bottom: 1.5em;
-    font-family: serif;
-    font-size: 12pt;
+    text-align: justify;
+}
+
+.post-content p, .post-content ul li {
+    font: 15px Helvetica, arial, freesans, clean, sans-serif;
+    line-height: 1.7;
+    /*margin-bottom: 1.5em;*/
+    /*font-family: serif;*/
+    /*font-size: 12pt;*/
 }
 
 .post-content pre, .post-content code {
