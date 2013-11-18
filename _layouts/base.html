@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{{ page.title }} - Stage1 / Blog</title>
+        <title>Stage1 / Blog</title>
         <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/vendor/bootstrap.css" />
         <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/public.css" />
         <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/blog.css" />
@@ -13,17 +13,10 @@
 
             {% include navigation.html %}
 
-            <h3 class="post-title">{{ page.title }}</h3>
-
-            <p class="post-meta"><small>A tale about {{ page.tags | array_to_sentence_string }}, by {{ site.owner.name }}, on {{ page.date | date: "%B %d, %Y" }}.</small></p>
-
-            <hr />
-
-            <div class="post-content">
-                {{ content }}
-            </div>
+            {{ content }}
 
             {% include footer.html %}
+
         </div> <!-- /container -->
     </body>
 </html>

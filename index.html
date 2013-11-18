@@ -1,54 +1,15 @@
 ---
-layout: ~
-title: Latest Posts
-description: "The Stage1 Blog"
-tags: [stage1, docker, symfony, php]
+layout: base
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Stage1</title>
-        <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/vendor/bootstrap.css" />
-        <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/public.css" />
-        <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/blog.css" />
-    </head>
-
-    <body>
-        <div class="container-narrow">
-
-            <div class="masthead">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/login/github">Signin</a></li>
-                    <li><a href="/demo">Demo</a><li>
-                </ul>
-                <h3 class="muted"><a href="{{ site.baseurl }}/">Stage1 — The Blog</a></h3>
-            </div>
-
-            <hr />
-
-            <ul class="post nav nav-pills nav-stacked">
-            {% for post in site.posts %}
-                <li>
-                    <a href="{{ site.baseurl }}{{ site.url }}{{ post.url }}">
-                        <h3 class="post-title">{{ post.title }}</h3>
-                        <p class="post-meta"><small>A tale about {{ post.tags | array_to_sentence_string }}, by {{ site.owner.name }}, on {{ post.date | date: "%B %d, %Y" }}.</small></p>
-                    </a>
-                </li>
-                <!-- <p class="post-meta"><small>{{ post.date | date: "%B %d, %Y" }}</small></p> -->
-            {% endfor %}
-            </ul>
-
-            <div class="footer">
-                <ul class="breadcrumb">
-                    <li>&copy; Stage1 2013 <span class="divider">/</separator></li>
-                    <li><a href="/privacy">Privacy</a> <span class="divider">/</separator></li>
-                    <li><a href="/terms">Terms</a></li>
-                </ul>
-            </div>
-
-        </div> <!-- /container -->
-    </body>
-</html>
+<ul class="post nav nav-pills nav-stacked">
+{% for post in site.posts %}
+    <li>
+        <a href="{{ site.baseurl }}{{ site.url }}{{ post.url }}">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <p class="post-meta"><small>A tale about {{ post.tags | array_to_sentence_string }}, by {{ site.owner.name }}, on {{ post.date | date: "%B %d, %Y" }}.</small></p>
+        </a>
+    </li>
+    <!-- <p class="post-meta"><small>{{ post.date | date: "%B %d, %Y" }}</small></p> -->
+{% endfor %}
+</ul>
