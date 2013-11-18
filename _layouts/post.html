@@ -15,7 +15,12 @@
 
             <h3 class="post-title">{{ page.title }}</h3>
 
-            <p class="post-meta"><small>A tale about {{ page.tags | array_to_sentence_string }}, by {{ site.owner.name }}, on {{ page.date | date: "%B %d, %Y" }}.</small></p>
+            <p class="post-meta">
+                <small>
+                A tale about {{ page.tags | array_to_sentence_string }},
+                by {{ site.owner.name }}, on {{ page.date | date: "%B %d, %Y" }}.
+                </small>
+            </p>
 
             <hr />
 
