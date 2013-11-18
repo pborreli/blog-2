@@ -12,6 +12,10 @@
     text-align: justify;
 }
 
+.post-content ul {
+    margin-bottom: 1.5em;
+}
+
 .post-content p, .post-content ul li {
     font: 15px Helvetica, arial, freesans, clean, sans-serif;
     line-height: 1.7;
