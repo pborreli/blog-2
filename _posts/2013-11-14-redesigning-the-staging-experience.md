@@ -15,6 +15,6 @@ We already have a few ideas how the staging of the future will look like, but of
 
 * [__Answer our quick survey__](http://stage1.io/survey). It's quick and easy, 10 questions, 2 minutes top.
 * [__Register for the private beta__](http://stage1.io/beta), that one's obvious.
-* [__Contact us!__](http://stage1.io/contact) Have something to say about staging? Want to share your story? Do you have some ideas on how it should be done? We'd love to hear from you!
+* [__Contact us!__](mailto:geoffrey@stage1.io) Have something to say about staging? Want to share your story? Do you have some ideas on how it should be done? We'd love to hear from you!
 
 In the meantime, we will regularly publish progress and general technical articles about technologies we use and develop to build stage1 (you can already read a bit about [docker containers linking]({{ site.baseurl }}{% post_url 2013-11-15-making-docker-containers-communicate %})) both on this blog and on our <i class="fa fa-twitter"></i> [twitter account](http://twitter.com/stage1app). You can also follow our <i class="fa fa-github"></i> [github account](http://github.com/stage1) for some opensource goodness (yet to come, but it will come).
