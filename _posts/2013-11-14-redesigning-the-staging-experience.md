@@ -3,7 +3,7 @@ layout: post
 title: Redesigning the staging experience
 tags: [staging, the future]
 category: articles
-comments: true
+comments: false
 published: true
 ---
 
