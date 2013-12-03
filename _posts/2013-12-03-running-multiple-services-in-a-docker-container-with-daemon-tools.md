@@ -4,7 +4,7 @@ title: Running multiple services in a Docker container with daemontools
 category: articles
 tags: [docker, processes, daemontools]
 comments: true
-published: false
+published: true
 ---
 
 One concept people often overlook about Docker is that there can only be one process running at a time in Docker, and when this process dies, the container stops. What that means is you can not simply start daemons in your container using the usual `/etc/init.d/nginx start` for example, because while nginx will effectively start, it's going to start in the background and your primary process will exit, stopping the container by the same occasion.
@@ -16,7 +16,9 @@ To make things simpler, we are going to use Docker's Ubuntu base image, more pre
     $ docker pull ubuntu:precise
     $ docker run -i -t run ubuntu:precise /bin/bash
 
-__Note__: everything should work exactly the same with more recent versions of ubuntu.
+
+> Everything should work exactly the same with more recent versions of ubuntu, but `precise` is the version I tested, so that will be the one I talk about.
+{:.note}
 
 ## Installing and configuring services
 
@@ -50,12 +52,13 @@ We will store our services definitions in `/etc/services`, so create that direct
     #!/bin/bash
     exec /usr/bin/sshd
 
-**Note**: You might want to install an editor to create the file, or you could just as well use bash's heredoc syntax with `cat`:
-
-    $ cat > /etc/services/sshd/run <<EOF
-    > #!/bin/bash
-    > exec /usr/sbin/sshd
-    > EOF
+> You might want to install an editor to create the file, or you could just as well use bash's heredoc syntax with `cat`:
+>
+>     $ cat > /etc/services/sshd/run <<EOF
+>     > #!/bin/bash
+>     > exec /usr/sbin/sshd
+>     > EOF
+{:.note}
 
 The first line, `#!/bin/bash` is called a __shebang__ and tells the system what interpreter to use when executing this file. `exec` is a bash builtin that replaces the current shell with the supplied command, which will crowding our processes list with unnecessary bash processes.
 
