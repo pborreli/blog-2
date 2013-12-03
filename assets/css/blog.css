@@ -30,9 +30,10 @@
 
 .post-content pre {
     max-height: 12em;
-    overflow: scroll;
+    /*overflow: scroll;*/
     margin-bottom: 1.5em;
     font-size: 12pt;
+    overflow: auto;
 }
 
 .footer .breadcrumb {
