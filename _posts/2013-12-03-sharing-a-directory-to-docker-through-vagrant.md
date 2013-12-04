@@ -2,7 +2,7 @@
 layout: post
 title: Sharing a directory to Docker through Vagrant
 category: articles
-tags: [docker, vagrant]
+tags: [docker, vagrant, volumes]
 comments: true
 published: true
 ---

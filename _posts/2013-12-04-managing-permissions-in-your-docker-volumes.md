@@ -7,7 +7,7 @@ comments: true
 published: true
 ---
 
-We saw yesterday [how to share a directory to docker through Vagrant]({{ site.baseurl }}{% post_url 2013-12-03-sharing-a-directory-to-docker-through-vagrant %}) and this raised at list one question: how to manage permissions inside it. A friend of mine wants to store some database files inside the shared volume (so that they can restart the VM without losing database changes, fair enough). In order to achieve that, the database user (`postgre` in this case) has to own the database directory (we will call it `datadir`).
+We saw yesterday [how to share a directory to Docker through Vagrant]({{ site.baseurl }}{% post_url 2013-12-03-sharing-a-directory-to-docker-through-vagrant %}) and this raised at list one question: how to manage permissions inside it. A friend of mine wants to store some database files inside the shared volume (so that they can restart the VM without losing database changes, fair enough). In order to achieve that, the database user (`postgre` in this case) has to own the database directory (we will call it `datadir`).
 
 > Since there will be commands both in the Docker container and host, command prompts in this article will respectively read `docker $` and `host $` for clarity.
 {:.note}
@@ -43,7 +43,7 @@ There are now two possibilities. The simplest is to force the UID of the `postgr
 
 Now the `postgre` user can do anything in the `datadir` directory, but also in the whole shared volume, since all the other files also belong to UID `501`.
 
-The other possibility is to chose an UID that is available both on the host, the VM and the docker host (UIDs around `2000` should be more than ok) and change ownership of the `datadir` directory to that UID on the host:
+The other possibility is to chose an UID that is available both on the host, the VM and the Docker host (UIDs around `2000` should be more than ok) and change ownership of the `datadir` directory to that UID on the host:
 
     host $ sudo chown 2000 datadir/
     Password:
