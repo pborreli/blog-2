@@ -12,19 +12,19 @@ This article assumes that you know how to build a container and that you already
 
 What you want to do is have the container with php5-fpm configured to listen on port 9000 and run it like so:
 
-    docker run -d -p 9000 -name php55 php5-fpm /usr/sbin/php5-fpm -F
+    $ docker run -d -p 9000 -name php55 php5-fpm /usr/sbin/php5-fpm -F
 
 We run `php5-fpm` with the `-F` flag so that it does not daemonize. As you can see, we use `-name` to explicitely name our container instead of having to remember its commit id. I named it `php55`, that's for PHP 5.5, since you don't run an unsupported version of PHP do you?
 
 We can now use this name to reference the php container in the link we are going to create with the nginx container:
 
-    docker run -i -t -link php55:php nginx /bin/bash
+    $ docker run -i -t -link php55:php nginx /bin/bash
 
 The `-link` option tells docker to link the `php55` container under the alias `php`. The alias is mandatory and must not be empty (no cheating with `php55:` for example).
 
 We now have a shell in our `nginx` container, and we can retrieve the mapped ip and port of the `php5-fpm` container using the `env` command:
 
-    root@061fe34bd07b:/# env | grep -E ^PHP
+    $ env | grep -E ^PHP
     PHP_PORT=tcp://172.17.0.44:9000
     PHP_PORT_9000_TCP_PROTO=tcp
     PHP_PORT_9000_TCP_PORT=9000
