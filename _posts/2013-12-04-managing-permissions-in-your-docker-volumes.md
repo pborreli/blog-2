@@ -7,7 +7,7 @@ comments: true
 published: true
 ---
 
-We saw yesterday [how to share a directory to Docker through Vagrant]({{ site.baseurl }}{% post_url 2013-12-03-sharing-a-directory-to-docker-through-vagrant %}) and this raised at list one question: how to manage permissions inside it. A friend of mine wants to store some database files inside the shared volume (so that they can restart the VM without losing database changes, fair enough). In order to achieve that, the database user (`postgre` in this case) has to own the database directory (we will call it `datadir`).
+We saw yesterday [how to share a directory to Docker through Vagrant]({{ site.baseurl }}{% post_url 2013-12-03-sharing-a-directory-to-docker-through-vagrant %}) and this raised at least one question: how to manage permissions inside it. A friend of mine wants to store some database files inside the shared volume (so that they can restart the VM without losing database changes, fair enough). In order to achieve that, the database user (`postgre` in this case) has to own the database directory (we will call it `datadir`).
 
 > Since there will be commands both in the Docker container and host, command prompts in this article will respectively read `docker $` and `host $` for clarity.
 {:.note}
