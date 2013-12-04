@@ -20,15 +20,18 @@ To make things simpler, we are going to use Docker's Ubuntu base image, more pre
 > Everything should work exactly the same with more recent versions of ubuntu, but `precise` is the version I tested, so that will be the one I talk about.
 {:.note}
 
-## Installing and configuring services
+### Installing and configuring services
 
 First things first, install OpenSSH:
 
     $ apt-get install -y openssh-server
 
-We are going to use [daemontools](http://cr.yp.to/daemontools.html) in this article. The great thing about daemontools is that it follows the UNIX tooling philosophy by not doing too much at once. Instead, it provides a set of tools that can be used together to achieve great control on how things run on your system. There is a few other process managers to chose from and you could use anything from `supervisord` to `monit`, but debating the pros and cons of them is beyond the scope of this tutorial.
+We are going to use [daemontools](http://cr.yp.to/daemontools.html) in this article. The great thing about `daemontools` is that it follows the UNIX tooling philosophy by not doing too much at once. Instead, it provides a set of tools that can be used together to achieve great control on how things run on your system.
 
-There is an ubuntu package for `daemontools`, but it's in the `universe` package repository, so you will need to add it and update apt-get first:
+> There are a few other process managers to chose from and you could use anything from `supervisord` to `monit`, but debating the pros and cons of them is beyond the scope of this tutorial.
+{:.note}
+
+There is an ubuntu package for `daemontools`, but it's in the `universe` package repository, so you will need to add it and update `apt-get` first:
 
     $ echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
     $ apt-get update
@@ -37,9 +40,9 @@ You can now install `daemontools`:
 
     $ apt-get install -y daemontools
 
-Daemontools expects services to be defined each in their own directory. Each service directory must contain an executable file named `run`. This executable can be anything that actually is executable, a binary compiled executable, a shell script, a ruby/python/whatever executable, you name it. The only requirement is that it is executable (using `chmod +x`).
+Daemontools expects services to be defined each in their own directory. Each service directory must contain an executable file named `run`. This executable can be anything that actually is executable, a binary compiled executable, a shell script, a ruby/python/whatever executable script, you name it. The only requirement is that it is executable (using `chmod +x`).
 
-We will store our services definitions in `/etc/services`, so create that directory if it does not already exists...
+We will store our services definitions in `/etc/services`, so create that directory if it does not already exist...
 
     $ mkdir /etc/services
 
@@ -60,7 +63,7 @@ We will store our services definitions in `/etc/services`, so create that direct
 >     > EOF
 {:.note}
 
-The first line, `#!/bin/bash` is called a __shebang__ and tells the system what interpreter to use when executing this file. `exec` is a bash builtin that replaces the current shell with the supplied command, which will crowding our processes list with unnecessary bash processes.
+The first line, `#!/bin/bash` is called a __shebang__ and tells the system what interpreter to use when executing this file. `exec` is a bash builtin that replaces the current shell with the supplied command.
 
 Do not forget to make this script executable:
 
@@ -74,21 +77,21 @@ You should have the following output:
 
     Missing privilege separation directory: /var/run/sshd
 
-As the message states, sshd requires a `/var/run/sshd` for something related to privilege separation. That seems important, so let's stop `svscan` if not already done (you can hit `^C`) and create the directory:
+As the message states, sshd requires a `/var/run/sshd` directory for something related to privilege separation. That seems important, so let's stop `svscan` if not already done (hit `^C`) and create the directory:
 
     $ mkdir /var/run/sshd
 
 You can now restart `svscan` and admire the lack of any output, which means that everything works fine!
 
-# Making a reusable image out of it
+### Making a reusable image out of it
 
 It's all well and good that we are able to run an sshd inside our container, but as soon as we will exit the container all this work will be lost. Fortunately, Docker has a couple options for us to persist this work.
 
-First, we can commit the container and obtain a brand new reusable image out of it. The prompt in your container contained your container's id. For example, if your prompt was something like `root@44c1ee41ae70`, the container id is `44c1ee41ae70`. Another way of finding the id of a stopped container is `docker ps -a` (the `-a` option stands for `all`), used in conjunction with the `-n` option to limit results:
+First, we can commit the container and obtain a brand new reusable image out of it. The prompt in your container contained your container's id. For example, if your prompt was something like `root@44c1ee41ae70`, the container id is `44c1ee41ae70`. Another way of finding the id of a stopped container is `docker ps -a` (the `-a` option stands for `all`), used in conjunction with the `-n` option to limit results (output truncated for clarity):
 
     $ docker ps -a -n 1
-    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-    44c1ee41ae70        ubuntu:precise      /bin/bash           9 minutes ago       Exit 130                                agitated_torvalds
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS  
+    44c1ee41ae70        ubuntu:precise      /bin/bash           9 minutes ago       Exit 130
 
 Commit this container to a new `ssh` image by using `docker commit`:
 
@@ -101,36 +104,38 @@ You can now reuse your newly created image with `docker run`:
 And check that everything works fine from another terminal:
 
     $ docker ps
-    CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS               NAMES
-    4aa184718760        ssh:latest          /usr/bin/svscan /etc   16 seconds ago      Up 16 seconds                           high_mclean
+    CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS       
+    4aa184718760        ssh:latest          /usr/bin/svscan /etc   16 seconds ago      Up 16 seconds
     $ docker top 4aa184718760
     PID                 TTY                 TIME                CMD
     11264               pts/9               00:00:00            svscan
     11309               pts/9               00:00:00            supervise
     11311               ?                   00:00:00            sshd
 
-# Automating things with a Dockerfile
+### Automating things with a Dockerfile
 
 Cherry on the cake, you can easily automate creation of such images with the use of a Dockerfile. [A Dockerfile](http://docs.docker.io/en/latest/use/builder/) is a Docker configuration file that tells how to build an image in a predictable and repeatable way. Our Dockerfile will look like that:
 
     FROM ubuntu:precise
-
     RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
     RUN apt-get update
     RUN apt-get install -y openssh-server daemontools
     RUN mkdir -p /etc/services/sshd /var/run/sshd
     RUN echo "#!/bin/bash\nexec /usr/sbin/sshd" > /etc/services/sshd/run
     RUN chmod +x /etc/services/sshd/run
-
     EXPOSE 22
+    ENTRYPOINT ["/usr/bin/svscan", "/etc/services/"]
 
-    ENTRYPOINT /usr/bin/svscan /etc/services/
+The `ENTRYPOINT` directive allows to define a command to be run when the container is created, and the `EXPOSE` tells Docker that we will want access to tcp port 22 of this container.
 
-The `ENTRYPOINT` directive allows to define a command to be run when the container is created, and the `EXPOSE` tells Docker that we will want access to tcp port 22 of this container. Put all that in a Dockerfile and run `docker build`:
+> Instead of an `ENTRYPOINT` you could define a default `CMD` for the container. [Docker's official documentation on Dockerfiles](http://docs.docker.io/en/latest/use/builder/#entrypoint) explains the difference between both and when you'd want to use one over the other.
+{:.note}
+
+Put all that in a Dockerfile and run `docker build`:
 
     docker build - ssh < Dockerfile
 
-And you can now run your container like that:
+And you can now run your container:
 
     docker run -P ssh
 
@@ -139,3 +144,7 @@ The `-P` option tells Docker to publish all `EXPOSE`d ports, so we get a nicely 
     docker port e56733a0ceaf 22
 
 Where `e56733a0ceaf`, of course, is the id of your newly created container.
+
+### Going the extra mile
+
+As you can see, using `daemontools` inside a container is fairly easy, and it would be trivial to add more service definitions inside `/etc/services/`. `daemontools` can also do a lot more than what we saw in this article, so I can only encourage you to go read [its documentation](http://cr.yp.to/daemontools.html), even if you're not going to use it, it's a good example of the UNIX philosophy in action.
