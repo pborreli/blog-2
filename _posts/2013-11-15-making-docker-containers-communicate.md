@@ -43,4 +43,5 @@ You can now configure nginx's php5-fpm upstream to `172.17.0.44:9000`, start it,
 
 Remember, your PHP source code has to be available on your php5-fpm container (maybe you uploaded it earlier, or ar using volumes to make it available to multiple containers).
 
-See also [the official linking tutorial, using redis](http://docs.docker.io/en/latest/examples/linking_into_redis/).
+> The official Docker documentation also has a very good [tutorial on containers linking](http://docs.docker.io/en/latest/examples/running_redis_service/), using redis, be sure to read it for more informations.
+{:.note}

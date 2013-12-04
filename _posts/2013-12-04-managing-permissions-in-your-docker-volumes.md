@@ -18,7 +18,7 @@ The problem we have here is a problem of UIDs. Let's take a look at what happens
     total 4
     drwxr-xr-x 2 501 dialout 68 Dec  4  2013 datadir
 
-As you can see, the `datadir` directory belongs to UID `501` and to the `dialout` group. This can vary on your system depending on the UID of your user, but the principles stay the same. What exactly is this `dialout` group you ask? [According to the internet](http://www.togaware.com/linux/survivor/Standard_Groups.html) (and you know the internet is always right), it is a standard linux group used to give users access to __ppp and isdn devices__. What does it have to do with us? Not much. To get a better understand, we're going to use the `-n` option of the `ls` command:
+As you can see, the `datadir` directory belongs to UID `501` and to the `dialout` group. This can vary on your system depending on the UID of your user, but the principles stay the same. What exactly is this `dialout` group you ask? [According to the internet](http://www.togaware.com/linux/survivor/Standard_Groups.html) (and you know the internet is always right), it is a standard linux group used to give users access to __ppp and isdn devices__. What does it have to do with us? Not much. To get a better understanding, we're going to use the `-n` option of the `ls` command:
 
     docker $ ls -ln /var/www
     total 4
