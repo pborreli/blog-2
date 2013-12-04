@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Running multiple services in a Docker container with daemontools
+title: Running services in a Docker container
 category: articles
-tags: [docker, processes, daemontools]
+tags: [docker, services, daemontools]
 comments: true
-published: false
+published: true
 ---
 
 One concept people often overlook about Docker is that there can only be one process running at a time in Docker, and when this process dies, the container stops. What that means is you can not simply start daemons in your container using the usual `/etc/init.d/nginx start` for example, because while nginx will effectively start, it's going to start in the background and your primary process will exit, stopping the container by the same occasion.

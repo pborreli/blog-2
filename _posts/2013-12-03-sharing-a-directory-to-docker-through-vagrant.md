@@ -20,3 +20,6 @@ Now fire up your VM (`vagrant up`) and once it's booted, check that `/vagrant` c
     docker run -i -t -v /vagrant:/var/www ubuntu /bin/bash
 
 You should get a shell inside the container, and be able to check that your files are present in `/var/www`, and voila! You're all set.
+
+> Managing permissions in shared volumes can be tricky, see our [managing permissions in your Docker volumes article]({{ site.baseurl }}{% post_url 2013-12-04-managing-permissions-in-your-docker-volumes %}) for more informations on that subject.
+{:.note}
