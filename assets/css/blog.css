@@ -48,7 +48,8 @@ code {
 }
 
 .note {
-    background-color: #f5f5f5;
+    background-color: #ffffe0;
+    border-color: #ffff00;
     border-radius: 4px;
     padding: 1em;
     overflow: auto;
