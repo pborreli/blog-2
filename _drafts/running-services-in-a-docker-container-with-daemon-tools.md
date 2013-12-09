@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Running services in a Docker container
+title: Running services in a Docker container with daemontools
 category: articles
 tags: [docker, services, daemontools]
 comments: true
@@ -133,15 +133,15 @@ The `ENTRYPOINT` directive allows to define a command to be run when the contain
 
 Put all that in a Dockerfile and run `docker build`:
 
-    docker build - ssh < Dockerfile
+    $ docker build - ssh < Dockerfile
 
 And you can now run your container:
 
-    docker run -P ssh
+    $ docker run -P ssh
 
 The `-P` option tells Docker to publish all `EXPOSE`d ports, so we get a nicely mapped port to ssh to that we can retrieve using `docker port`:
 
-    docker port e56733a0ceaf 22
+    $ docker port e56733a0ceaf 22
 
 Where `e56733a0ceaf`, of course, is the id of your newly created container.
 
