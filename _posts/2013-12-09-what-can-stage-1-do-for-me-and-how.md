@@ -3,6 +3,7 @@ layout: post
 title: What can Stage1 do for me, and how?
 publish: true
 category: stage1
+comments: true
 ---
 
 **Stage1** helps you gather feedback for your web application projects. It does so by automating the production of staging environments, be it for internal reviewing purpose or for presentation to your clients or stakeholders. Under the hood, it uses [Docker](http://docker.io/) to enable a reliable and repeatable environment building workflow.
