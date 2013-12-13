@@ -14,7 +14,7 @@ What you want to do is have the container with php5-fpm configured to listen on 
 
     $ docker run -d -p 9000 -name php55 php5-fpm /usr/sbin/php5-fpm -F
 
-We run `php5-fpm` with the `-F` flag so that it does not daemonize. As you can see, we use `-name` to explicitely name our container instead of having to remember its commit id. I named it `php55`, that's for PHP 5.5, since you don't run an unsupported version of PHP do you?
+We run `php5-fpm` with the `-F` flag so that it does not daemonize. As you can see, we use `-name` to explicitly name our container instead of having to remember its commit id. I named it `php55`, that's for PHP 5.5, since you don't run an unsupported version of PHP do you?
 
 We can now use this name to reference the php container in the link we are going to create with the nginx container:
 
