@@ -7,7 +7,7 @@ comments: false
 published: true
 ---
 
-You may call it staging or pre-production, it boils down to one simple concept: to make a version of your project available before production. Be it for running integration test, getting product owner feedback, internal feature reviewing, you name it. Having a staging environment is useful in more than one ways, but it often ryhtmes pain. Pain to setup, pain to maintain, pain to deploy.
+You may call it staging or pre-production, it boils down to one simple concept: to make a version of your project available before production. Be it for running integration test, getting product owner feedback, internal feature reviewing, you name it. Having a staging environment is useful in more than one ways, but it often rhymes with pain. Pain to setup, pain to maintain, pain to deploy.
 
 Staging should not be painful. That is the mission we set ourselves up to, making staging the way it should be: __easy__, __automatic__ and __painless__.
 

@@ -43,7 +43,7 @@ There are three main steps in a build:
 2. The build itself
 3. Deploying the container
 
-Depending on your project type or configuration, a different base container will be used. Right now, most projects use [the Symfony 2 base image](http://help.stage1.io/article/the-symfony-2-base-image/), which contains everything you need to run a Symfony 2 projects as its name suggests. Prepation of the build container includes tasks like setting up ssh keys and configuration to be able to clone the repository.
+Depending on your project type or configuration, a different base container will be used. Right now, most projects use [the Symfony 2 base image](http://help.stage1.io/article/the-symfony-2-base-image/), which contains everything you need to run a Symfony 2 projects as its name suggests. Preparation of the build container includes tasks like setting up ssh keys and configuration to be able to clone the repository.
 
 > You can also use [a bare image](http://help.stage1.io/article/the-ubuntu-precise-12-04-base-image/) and easily provision your build using existing provisioning tools, like Ansible, CFEngine, Chef, Puppet or Salt (documentation still to come on this).
 {:.note}
