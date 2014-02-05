@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Staging as a communication tool
-publish: false
+publish: true
 tags: staging, communication
 category: stage1
 comments: true
