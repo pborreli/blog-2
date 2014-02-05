@@ -3,6 +3,7 @@ layout: post
 title: What can Stage1 do for me, and how?
 publish: true
 category: stage1
+tags: you, stage1
 comments: true
 ---
 
