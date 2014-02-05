@@ -27,4 +27,4 @@ Most agile methodologies advocate some sort of __demo day__ at the end of each s
 
 Wouldn't it be better if the client could play with new features as soon as they reach the repository? This way, he can see right away what works and what doesn't, send feedback very quickly, and the development team can react accordingly. __Every day is demo day__. The feedback loop is shortened and strengthened at the same time.
 
-That is what Stage1 aims to be. __A platform that helps communicate__ project progress by enabling your client to use the project at each and every stage of its development, and easing feedback gathering at the same time. In an upcoming series of posts, I will tell you about how we're going to do that, so stay tuned!
+That is what Stage1 aims to be. __A platform that helps communicate__ project progress by enabling your client to use the project at each and every stage of its development, and easing feedback gathering at the same time so you can stay focused on what you do best while your client focuses on setting a clear path for the project.
