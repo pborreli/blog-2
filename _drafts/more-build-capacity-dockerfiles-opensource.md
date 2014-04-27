@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Adding more build capacity, Dockerfiles and OpenSource
-publish: true
-tags: stage1 capacity dockerfiles opensource
+tags: [stage1, capacity, dockerfiles, opensource]
 category: stage1
 comments: true
 ---
