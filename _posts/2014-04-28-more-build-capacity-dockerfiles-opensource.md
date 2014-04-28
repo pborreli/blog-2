@@ -22,4 +22,4 @@ So with both these problems solved, I am delighted to announce that __Stage1 is 
 
 And since we're such big fans of OpenSource, we are also going to commit ourselves to opensource most of the components that make Stage1. We already started with a few of them, there's our [Docker-PHP client](https://github.com/stage1/docker-php), [Aldis](https://github.com/stage1/aldis), which routes containers' output through our message distribution system, and [Yuhao](https://github.com/stage1/yuhao) which is at the very heart of our builder, but there's more coming! And eventually, our goal is to make our whole codebase open.
 
-The service is still in beta, but we're going to start accepting beta signups faster than before, so than more people can enjoy the awesomeness of automatic and interactive staging, so do not hesitate and [register now](https://stage1.io) for the private beta!
+The service is still in beta, but we're going to start accepting beta signups faster than before, so than more people can enjoy the awesomeness of automatic and interactive staging, so do not hesitate and [register now](http://stage1.io) for the private beta!
