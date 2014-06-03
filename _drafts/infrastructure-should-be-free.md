@@ -7,7 +7,7 @@ comments: false
 published: false
 ---
 
-In my last blog post, I stated that Stage1's source code might become open in a more or less near future. Well, it'll be more near than less, because I'm happy to announce the immediate availability of the integrality of [Stage1's source code at GitHub](https://github.com/stage1/stage1).
+In my last blog post, I stated that Stage1's source code might become open in a more or less near future. Well, it'll be more near than less, because I'm happy to announce the immediate availability of the integrality of [Stage1's source code at GitHub](https://github.com/stage1/stage1) under the [MIT License](http://opensource.org/licenses/MIT).
 
 Why the sudden decision, you ask? Well there are two main reasons:
 
