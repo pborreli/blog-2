@@ -19,7 +19,7 @@ In its current state, **Stage1** has three major restrictions:
 * you **MUST** be using the [Symfony 2](http://www.symfony.com/) framework
 * your dependencies **SHOULD** be hosted at Github too, or **MUST** be accessible from the internet (no internal Gitlab instance for example)
 
-> Stage1's builder is flexible enough to build any sort of web project, but we are concentrating our efforts on making the experience seemless for users of the Symfony 2 framework (because, that's what we know best).
+> Stage1's builder is flexible enough to build any sort of web project, but we are concentrating our efforts on making the experience seamless for users of the Symfony 2 framework (because, that's what we know best).
 {:.note}
 
 A private beta will be available to non Symfony 2 projects very soon, [signup now](http://stage1.io/beta) to be contacted when other technologies will be supported.
